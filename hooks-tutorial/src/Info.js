@@ -1,30 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useReducer } from "react";
+
+function reducer(state, action) {
+  return {
+    ...state,
+    [action.name]: action.value
+  };
+}
 
 const Info = () => {
-  const [name, setName] = useState("");
-  const [nickName, setNickName] = useState("");
-  useEffect(() => {
-    console.log("effect");
-    console.log(name);
-    return () => {
-      console.log("cleanup");
-      console.log(name);
-    };
-  }, []);
-
-  const onChangeName = e => {
-    setName(e.target.value);
-  };
-
-  const onChangeNickName = e => {
-    setNickName(e.target.value);
+  const [state, dispacth] = useReducer(reducer, {
+    name: "",
+    nickName: ""
+  });
+  const { name, nickName } = state;
+  const onChange = e => {
+    dispacth(e.target);
   };
 
   return (
     <div>
       <div>
-        <input value={name} onChange={onChangeName}></input>
-        <input value={nickName} onChange={onChangeNickName}></input>
+        <input name="name" value={name} onChange={onChange}></input>
+        <input name="nickName" value={nickName} onChange={onChange}></input>
       </div>
       <div>
         <div>
