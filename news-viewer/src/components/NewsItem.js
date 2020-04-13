@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const NewsItemBlock = styled.dialog`
+const NewsItemBlock = styled.div`
   display: flex;
   .thumbnail {
     margin-right: 1rem;
@@ -30,7 +30,6 @@ const NewsItemBlock = styled.dialog`
     margin-top: 3rem;
   }
 `;
-
 const NewsItem = ({ article }) => {
   const { title, description, url, urlToImage } = article;
   return (
@@ -38,7 +37,7 @@ const NewsItem = ({ article }) => {
       {urlToImage && (
         <div className="thumbnail">
           <a href={url} target="_blank" rel="noopener noreferrer">
-            <img src={urlToImage} alt="thumbnail"></img>
+            <img src={urlToImage} alt="thumbnail" />
           </a>
         </div>
       )}
